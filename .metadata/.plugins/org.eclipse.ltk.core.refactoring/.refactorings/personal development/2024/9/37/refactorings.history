@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="型 &apos;personal.development.BlackJack&apos; を &apos;Blackjack&apos; に名前変更します&#x0A;- 元のプロジェクト: &apos;personal development&apos;&#x0A;- オリジナル要素: &apos;personal.development.BlackJack&apos;&#x0A;- 名前変更済み要素: &apos;personal.development.Blackjack&apos;&#x0A;- リファクタリングされた要素の参照を更新&#x0A;- コメントおよびストリング内のテキスト出現箇所の更新" description="型名 &apos;BlackJack&apos; を変更します" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;personal.development{BlackJack.java[BlackJack" matchStrategy="1" name="Blackjack" qualified="false" references="true" similarDeclarations="false" stamp="1725861760829" textual="false" version="1.0"/>
+</session>
