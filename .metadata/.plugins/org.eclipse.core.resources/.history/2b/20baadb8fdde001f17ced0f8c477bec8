@@ -1,0 +1,32 @@
+package j4_ex1;
+
+import java.util.List;
+
+/**
+ * FWiterStudentListBusinessLogiクラス<br>
+ * ユーザー情報抽出
+ * */
+public class FWiterStudentListBL {
+
+	/**
+	 * extractメソッド<br>
+	 * 
+	 * 対象のユーザー情報を抽出し、コマンドライン上に表示する<br>
+	 * @param targetUserId 対象のユーザーID
+	 * */
+	public void extract() {
+
+	}
+	
+	public void makeTitle() {
+		
+	}
+	
+	public void makeHeader() {
+		
+	}
+	
+	private void writeStudentListRecord() {
+		
+	}
+}

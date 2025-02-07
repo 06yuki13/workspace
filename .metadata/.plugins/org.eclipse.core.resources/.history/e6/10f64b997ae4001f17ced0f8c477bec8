@@ -1,0 +1,162 @@
+package j4_ex1;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+
+/**
+ * FWiterStudentListBusinessLogiクラス<br>
+ * ユーザー情報抽出
+ * */
+public class FWiterStudentListBL {
+
+	/*フィールドの設定*/
+
+	//書き出し先ファイル（フルパス）
+	private final String FILE_PATH = "/Users/nakagawayuki/Desktop/udemy_JDBC/J4-EX_総合演習（JDBC）/参考ソースコード/WriteFileSample.csv";
+
+	//テキストデータ（共通）
+	private final String CONMA = ",";
+
+	//改行
+	private final String NEW_LINE = "";
+
+	//テキストデータ（受講生情報）
+
+	//タイトル
+	private final String HEADER_TITLE = "#受講生一覧";
+
+	//名前
+	private final String SL_STUDENT_COLUMN_NAME = "受講者名";
+
+	//性別
+	private final String SL_COLUMN_GENDER = "性別 男性:1 女性:2";
+
+	//年齢
+	private final String SL_COLUMN_AGE = "年齢";
+
+	//職歴
+	private final String SL_COLUMN_CAREER_MON = "職歴";
+
+	//登録支店
+	private final String SL_COLUMN_BRACCH_NAME = "登録支店";
+
+	//受講講座
+	private final String SL_COLUMN_COURSE = "受講講座";
+
+	//男性
+	private final String MALE = "女性";
+
+	//女性
+	private final String FEMALE = "2";
+
+	//変換文字(年)
+	private final String TEXT_YEAR = "年";
+
+	//変換文字(月)
+	private final String TEXT_MONTH = "ヶ月";
+
+	//変換文字列(職歴なし)
+	private final String TEXT_NON_CARRER = "職歴なし";
+
+	//変換文字列(受講なし)
+	private final String TEXT_NON_COURSE = "受講なし";
+	
+	//1年の月換算
+	private final int ONE_YEAR_BY_MONTH = 12;
+
+	/**
+	 * extractStudentListメソッド<br>
+	 * 
+	 * 対象のユーザー情報を抽出し、CSVリストに書き出す<br>
+	 * */
+	public void extractStudentList() {
+		StudentListDao studentListDao = new StudentListDao();
+		List<StudentListDto> extractDtoList = studentListDao.selectStudentInfo();
+
+		try {
+
+			//書き出し用ファイルを読み込みFileWriterにセット
+			FileWriter fw = new FileWriter(FILE_PATH);
+
+			//タイトルの書き出し
+			writeStudentListTitle(fw);
+
+			//ヘッダーの書き出し
+			writeStudentListHeader(fw);
+
+			//受講生データの書き出し
+			writeStudentList(fw, extractDtoList);
+
+			//FileWriterを閉じる
+			fw.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private void writeStudentListTitle(FileWriter fw) {
+		try {
+			fw.write(HEADER_TITLE);
+			fw.write(NEW_LINE);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void writeStudentListHeader(FileWriter fw) {
+		try {
+			fw.write(SL_STUDENT_COLUMN_NAME);
+			fw.write(CONMA);
+			fw.write(SL_COLUMN_GENDER);
+			fw.write(CONMA);
+			fw.write(SL_COLUMN_AGE);
+			fw.write(CONMA);
+			fw.write(SL_COLUMN_CAREER_MON);
+			fw.write(CONMA);
+			fw.write(SL_COLUMN_BRACCH_NAME);
+			fw.write(CONMA);
+			fw.write(SL_COLUMN_COURSE);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private void writeStudentList(FileWriter fw, List<StudentListDto> stList) {
+
+		try {
+			for (int i = 0; i < stList.size(); i++) {
+				fw.write(stList.get(i).getName());
+
+				fw.write(CONMA);
+
+				if (stList.get(i).getGender() == String.valueOf(1)) {
+					fw.write(MALE);
+				} else if (stList.get(i).getGender() == String.valueOf(2)) {
+					fw.write(FEMALE);
+				}
+
+				fw.write(CONMA);
+
+				fw.write(stList.get(i).getAge());
+
+				fw.write(CONMA);
+
+				if(stList.get(i).getCareerMon() == 0) {
+					
+				}
+				fw.write(null);
+
+			}
+
+		} catch (Exception e) {
+
+		}
+
+	}
+}

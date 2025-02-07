@@ -1,0 +1,46 @@
+package j4_ex2;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+public class StudentsCountByCourseDao {
+
+	//フィールド
+	String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
+
+	String JDBC_URL = "jdbc:mysql://localhost/test_db?characterEncoding=UTF-8&serverTimezone=Asia/Tokyo";
+
+	String USER_ID = "test_user";
+
+	String USER_PASS = "test_pass";
+
+	/*メソッド定義*/
+	public List<StudentsCountByCourseDto> selectCount() {
+
+		StudentsCountByCourseDto countDto = new StudentsCountByCourseDto();
+		List<StudentsCountByCourseDto> countDtoList = new ArrayList<>();
+		
+		//-------------------------------------------
+		//JDBCドライバのロード
+		//-------------------------------------------
+		try {
+			Class.forName(DRIVER_NAME); //JDBCドライバをロード＆接続先として指定
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+			
+			//-------------------------------------------
+			//SQL発行
+			//-------------------------------------------
+
+			//JDBCの接続に使用するオブジェクトを宣言
+			//※finallyブロックでも扱うためtryブロック内で宣言してはいけないことに注意
+			Connection con = null; // Connection（DB接続情報）格納用変数
+			PreparedStatement ps = null; // PreparedStatement（SQL発行用オブジェクト）格納用変数
+			ResultSet rs = null; // ResultSet（SQL抽出結果）格納用変数
+	}
+return countDtoList;
+}

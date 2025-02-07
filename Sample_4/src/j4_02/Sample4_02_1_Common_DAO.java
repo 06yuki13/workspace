@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 /**----------------------------------------------------------------------*
  *■■■Sample4_02_1_Common_DAOクラス■■■
  *概要：DAO（uzuz_memberテーブル）
@@ -23,16 +22,15 @@ public class Sample4_02_1_Common_DAO {
 
 	//接続先のデータベース
 	//※データベース名が「test_db」でない場合は該当の箇所を変更してください
-	String JDBC_URL    = "jdbc:mysql://localhost/test_db?characterEncoding=UTF-8&serverTimezone=JST&useSSL=false";
+	String JDBC_URL = "jdbc:mysql://localhost/test_db?characterEncoding=UTF-8&serverTimezone=Asia/Tokyo";
 
 	//接続するユーザー名
 	//※ユーザー名が「test_user」でない場合は該当の箇所を変更してください
-	String USER_ID     = "test_user";
+	String USER_ID = "test_user";
 
 	//接続するユーザーのパスワード
 	//※パスワードが「test_pass」でない場合は該当の箇所を変更してください
-	String USER_PASS   = "test_pass";
-
+	String USER_PASS = "test_pass";
 
 	//----------------------------------------------------------------
 	//メソッド
@@ -44,13 +42,13 @@ public class Sample4_02_1_Common_DAO {
 	 *引数　：抽出対象ID
 	 *戻り値：抽出データ（Sample4_02_1_Common_DTO型）
 	 *----------------------------------------------------------------------**/
-	public Sample4_02_1_Common_DTO selectMemberInfo(int pk){
+	public Sample4_02_1_Common_DTO selectMemberInfo(int pk) {
 
 		//-------------------------------------------
 		//JDBCドライバのロード
 		//-------------------------------------------
 		try {
-			Class.forName(DRIVER_NAME);       //JDBCドライバをロード＆接続先として指定
+			Class.forName(DRIVER_NAME); //JDBCドライバをロード＆接続先として指定
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -61,9 +59,9 @@ public class Sample4_02_1_Common_DAO {
 
 		//JDBCの接続に使用するオブジェクトを宣言
 		//※finallyブロックでも扱うためtryブロック内で宣言してはいけないことに注意
-		Connection        con = null ;   // Connection（DB接続情報）格納用変数
-		PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
-		ResultSet         rs  = null ;   // ResultSet（SQL抽出結果）格納用変数
+		Connection con = null; // Connection（DB接続情報）格納用変数
+		PreparedStatement ps = null; // PreparedStatement（SQL発行用オブジェクト）格納用変数
+		ResultSet rs = null; // ResultSet（SQL抽出結果）格納用変数
 
 		//抽出データ（Sample4_02_1_Common_DTO型）格納用変数
 		//※最終的にreturnするため、tryブロック内で宣言してはいけないことに注意
@@ -91,7 +89,7 @@ public class Sample4_02_1_Common_DAO {
 			buf.append(" FROM          ");
 			buf.append("   uzuz_member ");
 			buf.append(" WHERE         ");
-			buf.append("   id = ?      ");  //第1パラメータ
+			buf.append("   id = ?      "); //第1パラメータ
 
 			//PreparedStatement（SQL発行用オブジェクト）を生成＆発行するSQLをセット
 			ps = con.prepareStatement(buf.toString());
@@ -103,13 +101,13 @@ public class Sample4_02_1_Common_DAO {
 			rs = ps.executeQuery();
 
 			//ResultSetオブジェクトから1レコード分のデータをDTOに格納
-			if(rs.next()){
+			if (rs.next()) {
 				dto = new Sample4_02_1_Common_DTO();
-				dto.setId(     rs.getInt(    "id"     ) );
-				dto.setName(   rs.getString( "name"   ) );
-				dto.setGender( rs.getString( "gender" ) );
-				dto.setAge(    rs.getInt(    "age"    ) );
-				dto.setCourse( rs.getString( "course" ) );
+				dto.setId(rs.getInt("id"));
+				dto.setName(rs.getString("name"));
+				dto.setGender(rs.getString("gender"));
+				dto.setAge(rs.getInt("age"));
+				dto.setCourse(rs.getString("course"));
 			}
 
 		} catch (SQLException e) {
@@ -121,27 +119,27 @@ public class Sample4_02_1_Common_DAO {
 			//-------------------------------------------
 
 			//ResultSetオブジェクトの接続解除
-			if (rs != null) {    //接続が確認できている場合のみ実施
+			if (rs != null) { //接続が確認できている場合のみ実施
 				try {
-					rs.close();  //接続の解除
+					rs.close(); //接続の解除
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
 
 			//PreparedStatementオブジェクトの接続解除
-			if (ps != null) {    //接続が確認できている場合のみ実施
+			if (ps != null) { //接続が確認できている場合のみ実施
 				try {
-					ps.close();  //接続の解除
+					ps.close(); //接続の解除
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
 
 			//Connectionオブジェクトの接続解除
-			if (con != null) {    //接続が確認できている場合のみ実施
+			if (con != null) { //接続が確認できている場合のみ実施
 				try {
-					con.close();  //接続の解除
+					con.close(); //接続の解除
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -158,13 +156,13 @@ public class Sample4_02_1_Common_DAO {
 	 *引数　：追加データ（Sample4_02_1_Common_DTO型）
 	 *戻り値：実行結果（真：成功、偽：例外発生）
 	 *----------------------------------------------------------------------**/
-	public boolean insertMemberInfo(Sample4_02_1_Common_DTO dto){
+	public boolean insertMemberInfo(Sample4_02_1_Common_DTO dto) {
 
 		//-------------------------------------------
 		//JDBCドライバのロード
 		//-------------------------------------------
 		try {
-			Class.forName(DRIVER_NAME);       //JDBCドライバをロード＆接続先として指定
+			Class.forName(DRIVER_NAME); //JDBCドライバをロード＆接続先として指定
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -175,12 +173,12 @@ public class Sample4_02_1_Common_DAO {
 
 		//JDBCの接続に使用するオブジェクトを宣言
 		//※finallyブロックでも扱うためtryブロック内で宣言してはいけないことに注意
-		Connection        con = null ;   // Connection（DB接続情報）格納用変数
-		PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
+		Connection con = null; // Connection（DB接続情報）格納用変数
+		PreparedStatement ps = null; // PreparedStatement（SQL発行用オブジェクト）格納用変数
 
 		//実行結果（真：成功、偽：例外発生）格納用変数
 		//※最終的にreturnするため、tryブロック内で宣言してはいけないことに注意
-		boolean isSuccess = true ;
+		boolean isSuccess = true;
 
 		try {
 
@@ -208,40 +206,40 @@ public class Sample4_02_1_Common_DAO {
 			buf.append("   age    ,                ");
 			buf.append("   course                  ");
 			buf.append(" ) VALUES (                ");
-			buf.append("   ?,                      ");  //第1パラメータ
-			buf.append("   ?,                      ");  //第2パラメータ
-			buf.append("   ?,                      ");  //第3パラメータ
-			buf.append("   ?,                      ");  //第4パラメータ
-			buf.append("   ?                       ");  //第5パラメータ
+			buf.append("   ?,                      "); //第1パラメータ
+			buf.append("   ?,                      "); //第2パラメータ
+			buf.append("   ?,                      "); //第3パラメータ
+			buf.append("   ?,                      "); //第4パラメータ
+			buf.append("   ?                       "); //第5パラメータ
 			buf.append(" )                         ");
 
 			//PreparedStatementオブジェクトを生成＆発行するSQLをセット
 			ps = con.prepareStatement(buf.toString());
 
 			//パラメータをセット
-			ps.setInt(    1, dto.getId()     );  //第1パラメータ：更新データ（ID）
-			ps.setString( 2, dto.getName()   );  //第2パラメータ：更新データ（名前）
-			ps.setString( 3, dto.getGender() );  //第3パラメータ：更新データ（性別）
-			ps.setInt(    4, dto.getAge()    );  //第4パラメータ：更新データ（年齢）
-			ps.setString( 5, dto.getCourse() );  //第5パラメータ：更新データ（コース）
+			ps.setInt(1, dto.getId()); //第1パラメータ：更新データ（ID）
+			ps.setString(2, dto.getName()); //第2パラメータ：更新データ（名前）
+			ps.setString(3, dto.getGender()); //第3パラメータ：更新データ（性別）
+			ps.setInt(4, dto.getAge()); //第4パラメータ：更新データ（年齢）
+			ps.setString(5, dto.getCourse()); //第5パラメータ：更新データ（コース）
 
 			//SQL文の送信＆戻り値として追加件数を取得
 			int insCount = ps.executeUpdate();
 
 			//SQL実行結果を表示
-			System.out.println("[INFO]" + insCount + "行追加しました") ;
+			System.out.println("[INFO]" + insCount + "行追加しました");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 
 			//実行結果を例外発生として更新
-			isSuccess = false ;
+			isSuccess = false;
 
 		} finally {
 			//-------------------------------------------
 			//トランザクションの終了
 			//-------------------------------------------
-			if(isSuccess){
+			if (isSuccess) {
 				//明示的にコミットを実施
 				try {
 					con.commit();
@@ -249,7 +247,7 @@ public class Sample4_02_1_Common_DAO {
 					e.printStackTrace();
 				}
 
-			}else{
+			} else {
 				//明示的にロールバックを実施
 				try {
 					con.rollback();
@@ -263,18 +261,18 @@ public class Sample4_02_1_Common_DAO {
 			//-------------------------------------------
 
 			//PreparedStatementオブジェクトの接続解除
-			if (ps != null) {    //接続が確認できている場合のみ実施
+			if (ps != null) { //接続が確認できている場合のみ実施
 				try {
-					ps.close();  //接続の解除
+					ps.close(); //接続の解除
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
 
 			//Connectionオブジェクトの接続解除
-			if (con != null) {    //接続が確認できている場合のみ実施
+			if (con != null) { //接続が確認できている場合のみ実施
 				try {
-					con.close();  //接続の解除
+					con.close(); //接続の解除
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -283,10 +281,9 @@ public class Sample4_02_1_Common_DAO {
 		}
 
 		//実行結果を戻す
-		return isSuccess ;
+		return isSuccess;
 
 	}
-
 
 	/**----------------------------------------------------------------------*
 	 *■updateMemberInfoメソッド
@@ -294,13 +291,13 @@ public class Sample4_02_1_Common_DAO {
 	 *引数　：更新データ（Sample4_02_1_Common_DTO型）
 	 *戻り値：実行結果（真：成功、偽：例外発生）
 	 *----------------------------------------------------------------------**/
-	public boolean updateMemberInfo(Sample4_02_1_Common_DTO dto){
+	public boolean updateMemberInfo(Sample4_02_1_Common_DTO dto) {
 
 		//-------------------------------------------
 		//JDBCドライバのロード
 		//-------------------------------------------
 		try {
-			Class.forName(DRIVER_NAME);       //JDBCドライバをロード＆接続先として指定
+			Class.forName(DRIVER_NAME); //JDBCドライバをロード＆接続先として指定
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -311,12 +308,12 @@ public class Sample4_02_1_Common_DAO {
 
 		//JDBCの接続に使用するオブジェクトを宣言
 		//※finallyブロックでも扱うためtryブロック内で宣言してはいけないことに注意
-		Connection        con = null ;   // Connection（DB接続情報）格納用変数
-		PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
+		Connection con = null; // Connection（DB接続情報）格納用変数
+		PreparedStatement ps = null; // PreparedStatement（SQL発行用オブジェクト）格納用変数
 
 		//実行結果（真：成功、偽：例外発生）格納用変数
 		//※最終的にreturnするため、tryブロック内で宣言してはいけないことに注意
-		boolean isSuccess = true ;
+		boolean isSuccess = true;
 
 		try {
 
@@ -339,40 +336,40 @@ public class Sample4_02_1_Common_DAO {
 			StringBuffer buf = new StringBuffer();
 			buf.append(" UPDATE uzuz_member ");
 			buf.append("  SET               ");
-			buf.append("   name   = ? ,     ");  //第1パラメータ
-			buf.append("   gender = ? ,     ");  //第2パラメータ
-			buf.append("   age    = ? ,     ");  //第3パラメータ
-			buf.append("   course = ?       ");  //第4パラメータ
+			buf.append("   name   = ? ,     "); //第1パラメータ
+			buf.append("   gender = ? ,     "); //第2パラメータ
+			buf.append("   age    = ? ,     "); //第3パラメータ
+			buf.append("   course = ?       "); //第4パラメータ
 			buf.append("  WHERE             ");
-			buf.append("   id     = ?       ");  //第5パラメータ
+			buf.append("   id     = ?       "); //第5パラメータ
 
 			//PreparedStatementオブジェクトを生成＆発行するSQLをセット
 			ps = con.prepareStatement(buf.toString());
 
 			//パラメータをセット
-			ps.setString( 1, dto.getName()   );  //第1パラメータ：更新データ（名前）
-			ps.setString( 2, dto.getGender() );  //第2パラメータ：更新データ（性別）
-			ps.setInt(    3, dto.getAge()    );  //第3パラメータ：更新データ（年齢）
-			ps.setString( 4, dto.getCourse() );  //第4パラメータ：更新データ（コース）
-			ps.setInt(    5, dto.getId()     );  //第5パラメータ：更新データ（ID）
+			ps.setString(1, dto.getName()); //第1パラメータ：更新データ（名前）
+			ps.setString(2, dto.getGender()); //第2パラメータ：更新データ（性別）
+			ps.setInt(3, dto.getAge()); //第3パラメータ：更新データ（年齢）
+			ps.setString(4, dto.getCourse()); //第4パラメータ：更新データ（コース）
+			ps.setInt(5, dto.getId()); //第5パラメータ：更新データ（ID）
 
 			//SQL文の送信＆戻り値として更新件数を取得
 			int updCount = ps.executeUpdate();
 
 			//SQL実行結果を表示
-			System.out.println("[INFO]" + updCount + "行更新しました") ;
+			System.out.println("[INFO]" + updCount + "行更新しました");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 
 			//実行結果を例外発生として更新
-			isSuccess = false ;
+			isSuccess = false;
 
 		} finally {
 			//-------------------------------------------
 			//トランザクションの終了
 			//-------------------------------------------
-			if(isSuccess){
+			if (isSuccess) {
 				//明示的にコミットを実施
 				try {
 					con.commit();
@@ -380,7 +377,7 @@ public class Sample4_02_1_Common_DAO {
 					e.printStackTrace();
 				}
 
-			}else{
+			} else {
 				//明示的にロールバックを実施
 				try {
 					con.rollback();
@@ -394,18 +391,18 @@ public class Sample4_02_1_Common_DAO {
 			//-------------------------------------------
 
 			//PreparedStatementオブジェクトの接続解除
-			if (ps != null) {    //接続が確認できている場合のみ実施
+			if (ps != null) { //接続が確認できている場合のみ実施
 				try {
-					ps.close();  //接続の解除
+					ps.close(); //接続の解除
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
 
 			//Connectionオブジェクトの接続解除
-			if (con != null) {    //接続が確認できている場合のみ実施
+			if (con != null) { //接続が確認できている場合のみ実施
 				try {
-					con.close();  //接続の解除
+					con.close(); //接続の解除
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -414,10 +411,9 @@ public class Sample4_02_1_Common_DAO {
 		}
 
 		//実行結果を戻す
-		return isSuccess ;
+		return isSuccess;
 
 	}
-
 
 	/**----------------------------------------------------------------------*
 	 *■deleteMemberInfoメソッド
@@ -425,13 +421,13 @@ public class Sample4_02_1_Common_DAO {
 	 *引数　：削除対象ID
 	 *戻り値：実行結果（真：成功、偽：例外発生）
 	 *----------------------------------------------------------------------**/
-	public boolean deleteMemberInfo(int pk){
+	public boolean deleteMemberInfo(int pk) {
 
 		//-------------------------------------------
 		//JDBCドライバのロード
 		//-------------------------------------------
 		try {
-			Class.forName(DRIVER_NAME);       //JDBCドライバをロード＆接続先として指定
+			Class.forName(DRIVER_NAME); //JDBCドライバをロード＆接続先として指定
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -442,12 +438,12 @@ public class Sample4_02_1_Common_DAO {
 
 		//JDBCの接続に使用するオブジェクトを宣言
 		//※finallyブロックでも扱うためtryブロック内で宣言してはいけないことに注意
-		Connection        con = null ;   // Connection（DB接続情報）格納用変数
-		PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
+		Connection con = null; // Connection（DB接続情報）格納用変数
+		PreparedStatement ps = null; // PreparedStatement（SQL発行用オブジェクト）格納用変数
 
 		//実行結果（真：成功、偽：例外発生）格納用変数
 		//※最終的にreturnするため、tryブロック内で宣言してはいけないことに注意
-		boolean isSuccess = true ;
+		boolean isSuccess = true;
 
 		try {
 
@@ -469,31 +465,31 @@ public class Sample4_02_1_Common_DAO {
 			//発行するSQL文の生成（DELETE）
 			StringBuffer buf = new StringBuffer();
 			buf.append(" DELETE FROM uzuz_member ");
-			buf.append("  WHERE id = ?           ");  //第1パラメータ
+			buf.append("  WHERE id = ?           "); //第1パラメータ
 
 			//PreparedStatementオブジェクトを生成＆発行するSQLをセット
 			ps = con.prepareStatement(buf.toString());
 
 			//パラメータをセット
-			ps.setInt( 1, pk );  //第1パラメータ：削除対象ID
+			ps.setInt(1, pk); //第1パラメータ：削除対象ID
 
 			//SQL文の送信＆戻り値として削除件数を取得
 			int delCount = ps.executeUpdate();
 
 			//SQL実行結果を表示
-			System.out.println("[INFO]" + delCount + "行削除しました") ;
+			System.out.println("[INFO]" + delCount + "行削除しました");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 
 			//実行結果を例外発生として更新
-			isSuccess = false ;
+			isSuccess = false;
 
 		} finally {
 			//-------------------------------------------
 			//トランザクションの終了
 			//-------------------------------------------
-			if(isSuccess){
+			if (isSuccess) {
 				//明示的にコミットを実施
 				try {
 					con.commit();
@@ -501,7 +497,7 @@ public class Sample4_02_1_Common_DAO {
 					e.printStackTrace();
 				}
 
-			}else{
+			} else {
 				//明示的にロールバックを実施
 				try {
 					con.rollback();
@@ -515,18 +511,18 @@ public class Sample4_02_1_Common_DAO {
 			//-------------------------------------------
 
 			//PreparedStatementオブジェクトの接続解除
-			if (ps != null) {    //接続が確認できている場合のみ実施
+			if (ps != null) { //接続が確認できている場合のみ実施
 				try {
-					ps.close();  //接続の解除
+					ps.close(); //接続の解除
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
 
 			//Connectionオブジェクトの接続解除
-			if (con != null) {    //接続が確認できている場合のみ実施
+			if (con != null) { //接続が確認できている場合のみ実施
 				try {
-					con.close();  //接続の解除
+					con.close(); //接続の解除
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -534,7 +530,7 @@ public class Sample4_02_1_Common_DAO {
 		}
 
 		//実行結果を戻す
-		return isSuccess ;
+		return isSuccess;
 
 	}
 }

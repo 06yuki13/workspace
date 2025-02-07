@@ -15,7 +15,7 @@
 	</section>
 	<section name="PropertyDialog.dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="346"/>
-		<item key="DIALOG_Y_ORIGIN" value="163"/>
+		<item key="DIALOG_Y_ORIGIN" value="193"/>
 		<item key="DIALOG_WIDTH" value="989"/>
 		<item key="DIALOG_HEIGHT" value="544"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
@@ -24,6 +24,8 @@
 		<item key="WizardFileSystemResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID" value="false"/>
 		<item key="WizardFileSystemResourceImportPage1.STORE_CREATE_CONTAINER_STRUCTURE_ID" value="false"/>
 		<list key="WizardFileSystemResourceImportPage1.STORE_SOURCE_NAMES_ID">
+			<item value="/Users/nakagawayuki/Desktop/udemy_JDBC/J4-02_JDBC応用/サンプルソースコード/Sample4_02_1/j4_02"/>
+			<item value="/Users/nakagawayuki/Desktop/udemy_JDBC"/>
 			<item value="/Users/nakagawayuki/Desktop/udemy_JDBC/J4-01_JDBC基礎/サンプルソースコード/j4_01"/>
 		</list>
 		<section name="FileSystemImportWizard.dialogBounds">

@@ -1,0 +1,12 @@
+package j4_ex1;
+
+public class FWriterStudentInfoMain {
+
+	public static void main(String[] args) {
+		
+		FWiterStudentListBL businessLogic = new FWiterStudentListBL();
+		businessLogic.extract(0);
+
+
+	}
+}

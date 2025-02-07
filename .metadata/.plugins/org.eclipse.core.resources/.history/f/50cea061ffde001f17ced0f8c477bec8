@@ -1,0 +1,29 @@
+package j4_ex1;
+
+/**
+ * FWiterStudentListBusinessLogiクラス<br>
+ * ユーザー情報抽出
+ * */
+public class FWiterStudentListBL {
+
+	/**
+	 * extractメソッド<br>
+	 * 
+	 * 対象のユーザー情報を抽出し、CSVリストに書き出す<br>
+	 * */
+	public void extractStudentList() {
+
+	}
+	
+	public void makeTitle() {
+		
+	}
+	
+	public void makeHeader() {
+		
+	}
+	
+	private void writeStudentListRecord() {
+		
+	}
+}

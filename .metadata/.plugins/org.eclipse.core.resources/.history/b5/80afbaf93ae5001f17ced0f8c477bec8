@@ -1,0 +1,14 @@
+package j4_ex2;
+
+import j4_ex1.FWriterStudentListBL;
+
+public class FWriterStudentInfoMain {
+
+	public static void main(String[] args) {
+		
+		FWriterStudentListBL businessLogic = new FWriterStudentListBL();
+		businessLogic.extractStudentList();
+
+
+	}
+}

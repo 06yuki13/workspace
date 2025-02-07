@@ -1,0 +1,13 @@
+package j4_ex1;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class FWriterStudentInfoMain {
+
+	public static void main(String[] args) {
+
+
+	}
+}

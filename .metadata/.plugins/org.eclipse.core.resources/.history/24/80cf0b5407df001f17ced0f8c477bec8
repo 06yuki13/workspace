@@ -1,0 +1,50 @@
+package j4_ex1;
+
+import java.io.FileWriter;
+import java.util.List;
+
+/**
+ * FWiterStudentListBusinessLogiクラス<br>
+ * ユーザー情報抽出
+ * */
+public class FWiterStudentListBL {
+
+	/**
+	 * extractStudentListメソッド<br>
+	 * 
+	 * 対象のユーザー情報を抽出し、CSVリストに書き出す<br>
+	 * */
+	public void extractStudentList() {
+		StudentListDao studentListDao = new StudentListDao();
+		List<StudentListDto> extractDtoList = studentListDao.selectStudentInfo();
+		
+		try {
+			
+			//書き出し用ファイルを読み込みFileWriterにセット
+			FileWriter fw = new FileWriter(FILE_PATH);
+			//タイトルの書き出し
+			
+			//ヘッダーの書き出し
+			
+			//受講生データの書き出し
+			
+		}catch(Exception e) {
+			
+		}
+		
+		
+
+	}
+	
+	public void makeTitle() {
+		
+	}
+	
+	public void makeHeader() {
+		
+	}
+	
+	private void writeStudentListRecord() {
+		
+	}
+}

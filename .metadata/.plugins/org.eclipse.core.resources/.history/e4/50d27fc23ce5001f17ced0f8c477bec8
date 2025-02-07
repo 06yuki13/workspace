@@ -1,0 +1,33 @@
+package j4_ex2;
+
+/**
+ * FWriterStudentsCountCoursビジネスロジッククラス<br>
+ * 登録支店、受講講座、受講者数抽出
+ * */
+public class FWriterStudentsCountByCourseBL {
+
+	/*フィールドの設定*/
+
+	//書き出し先ファイル（フルパス）
+	private final String FILE_PATH = "/Users/nakagawayuki/Desktop/udemy_JDBC/csv/WriteCsvEx1.csv";
+
+	//テキストデータ（共通）
+	private final String CONMA = ",";
+
+	//改行
+	private final String NEW_LINE = System.getProperty("line.separator"); //改行;;
+
+	/*テキストデータ*/
+	//タイトル
+	private final String HEADER_TITLE = "#--集計結果--";
+	//登録支店
+	private final String SL_COLUMN_BRANCH = "登録支店";
+	//受講講座
+	private final String SL_COLUMN_COURSE = "受講講座";
+	//受講者数
+	private final String SL_COLUMN_COUNT = "受講者数";
+	//追加で書き出す際の既存データとの間隔行数
+	private final int INTERVAL_LINE_NUMBER = 2;
+	
+	
+}
